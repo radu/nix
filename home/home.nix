@@ -1,6 +1,23 @@
-{ config, pkgs, ... }:
-
 {
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: 
+{
+   imports = [
+    # If you want to use modules your own flake exports (from modules/home-manager):
+    # outputs.homeManagerModules.example
+
+    # Or modules exported from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModules.default
+
+    # You can also split up your configuration and import pieces of it here:
+    # ./nvim.nix
+  ];
+
   home.username = "radu";
   home.homeDirectory = "/home/radu";
 
@@ -13,7 +30,7 @@
      bat
      dog
      neofetch
-     exa
+     eza
 
      file
      which
@@ -30,6 +47,15 @@
 
      lsof
      htop
+
+     curl
+     du-dust
+     ripgrep
+     vault
+     nixpkgs-fmt
+     git-annex
+   
+     google-chrome
   ];
 
   home.stateVersion = "23.05";
@@ -49,7 +75,7 @@
     initExtra = "
        eval \"$(starship init zsh)\"
     ";
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     enableAutosuggestions = true;
     shellAliases = {
         ll = "ls -l";
