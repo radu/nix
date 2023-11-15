@@ -61,7 +61,6 @@
      google-chrome
 
      wlogout
-     anyrun
      waybar
 
      xfce.thunar 
