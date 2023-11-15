@@ -58,6 +58,8 @@
      kitty
    
      google-chrome
+
+     wlogout
   ];
 
   home.stateVersion = "23.05";
