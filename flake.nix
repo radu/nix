@@ -26,7 +26,7 @@
    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, NixOS-WSL, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, anyrun, NixOS-WSL, ... }@inputs: 
   {
     nixosConfigurations = {
       "lap" = nixpkgs.lib.nixosSystem {
