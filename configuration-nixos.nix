@@ -118,6 +118,7 @@
 
   services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = false;
+  security.pam.services.sudo.fprintAuth = false;
   security.pam.services.gdm-fingerprint = lib.mkIf (config.services.fprintd.enable) {
       text = ''
         auth       required                    pam_shells.so
