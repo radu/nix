@@ -86,8 +86,12 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  nix.trustedUsers = [ "root" "@wheel" ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.cudaSupport = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -99,6 +103,7 @@
      wget
      curl
      silver-searcher
+     pciutils
   ];
  
   programs.zsh.enable = true;

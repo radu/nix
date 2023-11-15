@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  hyprland,
   ...
 }: 
 {
@@ -16,7 +17,6 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./anyrun.nix
   ];
 
   home.username = "radu";
