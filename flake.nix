@@ -6,7 +6,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     NixOS-WSL = {
@@ -15,14 +22,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, NixOS-WSL, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, NixOS-WSL, ... }@inputs: 
   {
     nixosConfigurations = {
       "lap" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
+ 
         modules = [
           ./configuration-nixos.nix
+          
+          {
+            programs.hyprland = {
+              enable = true;
+              enableNvidiaPatches = true;
+              xwayland = {
+                enable = true;
+             };
+            };
+          }
 
           home-manager.nixosModules.home-manager
           {
