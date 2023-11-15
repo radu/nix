@@ -20,6 +20,10 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+   };
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, NixOS-WSL, ... }@inputs: 
