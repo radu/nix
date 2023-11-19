@@ -43,28 +43,35 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+ 
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
 
+  # powerManagement.powertop.enable = true;
+  
   services.xserver.videoDrivers = ["nvidia"];
 
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
   hardware.nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
-      powerManagement.finegrained = true;
+      # powerManagement.finegrained = true;
   
       nvidiaSettings = true;
 
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
 
-
-  hardware.nvidia.prime = {
-          offload = {
+      prime = {
+          sync = {
                   enable = true;
-                  enableOffloadCmd = true;
           };
-		intelBusId = "PCI:0:2:0";
-		nvidiaBusId = "PCI:3:0:0";
+ 	  nvidiaBusId = "PCI:3:0:0";
+  	  intelBusId = "PCI:0:2:0";
+      };
   };
-
 }

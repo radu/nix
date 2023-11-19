@@ -92,7 +92,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
   nixpkgs.config.cudaSupport = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -106,6 +105,7 @@
      curl
      silver-searcher
      pciutils
+     powertop
   ];
  
   programs.zsh.enable = true;
