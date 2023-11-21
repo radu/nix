@@ -67,7 +67,8 @@
       };
       radu-p14s = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
+        modules = [ 
+          { virtualisation.docker.enable = true; }
           { nix.registry.nixpkgs.flake = nixpkgs; }
           ./configuration-wsl.nix
           NixOS-WSL.nixosModules.wsl
