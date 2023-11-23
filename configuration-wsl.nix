@@ -16,6 +16,10 @@
   wsl.enable = true;
   wsl.defaultUser = "radu";
 
+  wsl.docker-desktop.enable = true;
+
+  wsl.interop.register = true;
+
   environment.shells = with pkgs; [ zsh ]; 
 
   nixpkgs.config.allowUnfree = true;

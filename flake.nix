@@ -44,8 +44,14 @@
         system = "x86_64-linux";
  
         modules = [
-          ./configuration-nixos.nix
-          
+          ./configuration-laphw.nix
+          {
+            virtualisation.docker =  {
+                   enable = true;
+                   enableNvidia = true;
+            };
+            config.hardware.opengl.driSupport32Bit = true;
+          }
           {
             programs.hyprland = {
               enable = true;
@@ -65,12 +71,21 @@
           }
         ];
       };
+
       radu-p14s = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ 
-          { virtualisation.docker.enable = true; }
-          { nix.registry.nixpkgs.flake = nixpkgs; }
           ./configuration-wsl.nix
+          {
+            virtualisation.docker =  {
+                   enable = true;
+                   enableNvidia = true;
+            };
+            hardware.opengl.driSupport32Bit = true;
+          }
+          { 
+              nix.registry.nixpkgs.flake = nixpkgs; 
+          }
           NixOS-WSL.nixosModules.wsl
           home-manager.nixosModules.home-manager
           {
